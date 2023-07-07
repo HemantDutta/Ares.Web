@@ -1,0 +1,20 @@
+/*Ares.Web Styles by Hemant Dutta*/
+/*https://github.com/HemantDutta*/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+body{
+    margin: 0;
+    font-family: 'Belanosima', sans-serif;
+}
+
