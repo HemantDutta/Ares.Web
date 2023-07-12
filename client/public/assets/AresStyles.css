@@ -1,6 +1,10 @@
 /*Ares.Web Styles by Hemant Dutta*/
 /*https://github.com/HemantDutta*/
 
+/*Z-Index Chart*/
+/*Navbar: 1000*/
+/*Big Menu: 999*/
+
 *,
 *::before,
 *::after {
@@ -13,8 +17,119 @@
     }
 }
 
-body{
+body {
     margin: 0;
     font-family: 'Belanosima', sans-serif;
 }
+
+/*==========Navbar==========*/
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+nav .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .navbar-container > * {
+    flex: 1;
+}
+
+nav .navbar-container .navbar-logo span {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+nav .navbar-container .navbar-about-option {
+    text-align: right;
+}
+
+nav .navbar-container .navbar-menu-option {
+    text-align: center;
+}
+
+nav .navbar-container .navbar-menu-option span{
+    transition: all 0.2s ease;
+}
+
+nav .navbar-container .navbar-menu-option span:hover{
+    letter-spacing: 2px;
+}
+
+nav .navbar-container .navbar-menu-option span.invisible {
+    display: none;
+}
+
+nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/*==========Navbar End==========*/
+
+/*==========Big Menu==========*/
+.bigMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 999;
+}
+
+.bigMenu.opened{
+    opacity: 1;
+}
+
+.bigMenu .bigMenu-container {
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item{
+    border-bottom: 2px solid black;
+    padding: 1rem;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item span{
+    font-size: 36px;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item i{
+    opacity: 0;
+    rotate: 90deg;
+    transition: all 0.2s ease;
+    font-size: 36px;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item:hover i{
+    opacity: 1;
+    rotate: 0deg;
+}
+
+/*==========Big Menu End==========*/
+
 
