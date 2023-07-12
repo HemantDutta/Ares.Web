@@ -47,6 +47,51 @@ nav .navbar-container .navbar-logo span {
     cursor: pointer;
 }
 
+nav .navbar-container .navbar-hamburger-option{
+    display: none;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger span{
+    background-color: #111;
+    height: 2px;
+    width: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger span:nth-child(1){
+    width: 12px;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger span:nth-child(3){
+    width: 18px;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger.clicked span{
+    width: 20px;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger.clicked span:nth-child(2){
+    display: none;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger.clicked span:nth-child(1){
+    rotate: 45deg;
+}
+
+nav .navbar-container .navbar-hamburger-option .hamburger.clicked span:nth-child(3){
+    rotate: -45deg;
+    transform: translate(5px, -5px);
+}
+
 nav .navbar-container .navbar-about-option {
     text-align: right;
 }
@@ -70,6 +115,27 @@ nav .navbar-container .navbar-menu-option span.invisible {
 nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     font-size: 24px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+    nav .navbar-container .navbar-about-option{
+        display: none;
+    }
+
+    nav .navbar-container .navbar-menu-option {
+        text-align: right;
+        display: none;
+    }
+
+    nav .navbar-container .navbar-hamburger-option{
+        display: initial;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    nav .navbar-container .navbar-logo span{
+        font-size: 28px;
+    }
 }
 
 /*==========Navbar End==========*/
@@ -130,6 +196,11 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     rotate: 0deg;
 }
 
+@media screen and (max-width: 360px) {
+    .bigMenu .bigMenu-container .bigMenu-item span{
+        font-size: 28px;
+    }
+}
 /*==========Big Menu End==========*/
 
 
