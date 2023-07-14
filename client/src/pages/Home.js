@@ -24,7 +24,9 @@ export const Home = () => {
                                 <Link to="/web-scraping">Learn more about web scraping&nbsp;<i className="fa-solid fa-arrow-right"/></Link>
                             </div>
                         </div>
-                        <div className="hero-right"></div>
+                        <div className="hero-right">
+                            <img src="assets/images/hero-right-temp.jpg" alt="Hero BG"/>
+                        </div>
                     </div>
                 </section>
             </div>
