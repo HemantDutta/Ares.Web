@@ -11,6 +11,10 @@
     box-sizing: border-box;
 }
 
+:root{
+    --accent-color: #A076F9;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     :root {
         scroll-behavior: smooth;
@@ -70,6 +74,7 @@ nav .navbar-container .navbar-logo span {
 nav .navbar-container .navbar-hamburger-option{
     display: none;
 }
+
 
 nav .navbar-container .navbar-hamburger-option .hamburger{
     display: flex;
@@ -225,7 +230,8 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 /*==========Home==========*/
 .home{
-
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 /*==========Home End==========*/
 
@@ -259,6 +265,13 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 .hero .hero-container .hero-left .hero-left-header span{
     font-size: 76px;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+.hero .hero-container .hero-left .hero-left-header span:hover{
+    transform: translateX(20px);
+    text-shadow: -5px 0px var(--accent-color);
 }
 
 .hero .hero-container .hero-left .hero-left-search .search-container{
@@ -276,6 +289,14 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     font-size: 18px;
 }
 
+.hero .hero-container .hero-left .hero-left-search .search-container input::placeholder{
+    color: black;
+}
+
+.hero .hero-container .hero-left .hero-left-search .search-container input:focus::placeholder{
+    color: gray;
+}
+
 .hero .hero-container .hero-left .hero-left-search .search-container i{
     background-color: #111;
     padding: 15px;
@@ -285,6 +306,14 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     outline-offset: -5px;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.hero .hero-container .hero-left .hero-left-search button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 .hero .hero-container .hero-left .hero-left-search .search-container i:hover{
@@ -339,6 +368,11 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255,255,255,0.25);
         color: white;
+    }
+
+    .hero .hero-container .hero-left .hero-left-header span:hover{
+        transform: none;
+        text-shadow: none;
     }
 }
 
