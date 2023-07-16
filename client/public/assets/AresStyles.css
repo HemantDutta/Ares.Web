@@ -230,7 +230,6 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 /*==========Home==========*/
 .home{
-    overflow-x: hidden;
     overflow-y: hidden;
 }
 /*==========Home End==========*/
@@ -261,6 +260,11 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     gap: 1rem;
     padding: 0 0 0 2rem;
     z-index: 105;
+}
+
+.hero .hero-container .hero-left .hero-left-header{
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .hero .hero-container .hero-left .hero-left-header span{
@@ -319,6 +323,7 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 .hero .hero-container .hero-left .hero-left-search .search-container i:hover{
     outline-offset: 3px;
     outline: 2px solid black;
+    color: var(--accent-color);
 }
 
 .hero .hero-container .hero-left .hero-left-cta a{
@@ -331,6 +336,7 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 .hero .hero-container .hero-left .hero-left-cta a:hover{
     clip-path: polygon(0 0.8em,0.8em 0,100% 0,100% calc(100% - 0.8em),calc(100% - 0.8em) 100%,0 100%);
+    color: var(--accent-color);
 }
 
 .hero .hero-container .hero-left .hero-left-cta a i{
