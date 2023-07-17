@@ -198,15 +198,18 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
-.bigMenu .bigMenu-container .bigMenu-item{
-    border-bottom: 2px solid black;
-    padding: 1rem;
-}
 
 .bigMenu .bigMenu-container .bigMenu-item span{
-    font-size: 36px;
+    font-size: 76px;
+}
+
+.bigMenu .bigMenu-container .bigMenu-item:hover span{
+    color: #555555;
 }
 
 .bigMenu .bigMenu-container .bigMenu-item i{
@@ -219,6 +222,18 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 .bigMenu .bigMenu-container .bigMenu-item:hover i{
     opacity: 1;
     rotate: 0deg;
+}
+
+@media screen and (max-width: 555px) {
+    .bigMenu .bigMenu-container .bigMenu-item span{
+        font-size: 56px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .bigMenu .bigMenu-container .bigMenu-item span{
+        font-size: 36px;
+    }
 }
 
 @media screen and (max-width: 360px) {

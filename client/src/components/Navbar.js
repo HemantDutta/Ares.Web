@@ -1,4 +1,13 @@
+import {useLayoutEffect, useRef, useState} from "react";
+import {gsap} from "gsap";
+
 export const Navbar = () => {
+
+    //States
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    //Refs
+    const bigMenu_item = useRef(null);
 
     //Big Menu Toggle
     function toggleBigMenu() {
@@ -7,6 +16,7 @@ export const Navbar = () => {
         let close = document.getElementById("close");
         let ham = document.getElementById("hamburger");
         if (bigMenu.classList.contains("opened")) {
+            setMenuOpen(false);
             bigMenu.classList.remove("opened");
             close.classList.add("invisible");
             menu.classList.remove("invisible");
@@ -15,6 +25,7 @@ export const Navbar = () => {
                 bigMenu.style.display = "none";
             }, 100)
         } else {
+            setMenuOpen(true);
             bigMenu.style.display = "initial";
             ham.classList.add("clicked");
             menu.classList.add("invisible");
@@ -24,6 +35,21 @@ export const Navbar = () => {
             }, 100)
         }
     }
+
+    //bigMenu Item Animation
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            gsap.from(".bigMenu-item span", {
+                yPercent: 200,
+                duration: 0.4,
+                delay: 0.2,
+                stagger: -0.1,
+                ease: "power2.out"
+            })
+        }, bigMenu_item)
+        return () => ctx.revert();
+    }, [menuOpen])
+
 
     return (
         <>
@@ -48,13 +74,13 @@ export const Navbar = () => {
             </nav>
             {/*  Big Menu  */}
             <section className="bigMenu" id="bigMenu">
-                <div className="bigMenu-container">
+                <div className="bigMenu-container" ref={bigMenu_item}>
                     <div className="bigMenu-item">
                         <span>Menu Option</span>
                         <i className="fa-solid fa-arrow-right"/>
                     </div>
                     <div className="bigMenu-item">
-                        <span>Menu Option</span>
+                        <span>Web Scraping</span>
                         <i className="fa-solid fa-arrow-right"/>
                     </div>
                     <div className="bigMenu-item">

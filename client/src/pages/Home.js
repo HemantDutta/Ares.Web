@@ -18,8 +18,8 @@ export const Home = () => {
         timeline
             .from(hero_image.current, {clipPath: "inset(35%)", duration: 1, autoAlpha:0, delay: 0.2})
             .from(header_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.6, delay: 0.2}, 0)
-            .from(search_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.4})
-            .from(cta_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.4})
+            .from(search_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.4}, 1)
+            .from(cta_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.4, delay: 0.1}, 1)
     }, []);
 
     return (
