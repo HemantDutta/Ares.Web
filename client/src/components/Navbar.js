@@ -1,5 +1,6 @@
 import {useLayoutEffect, useRef, useState} from "react";
 import {gsap} from "gsap";
+import {Link} from "react-router-dom";
 
 export const Navbar = () => {
 
@@ -23,7 +24,7 @@ export const Navbar = () => {
             ham.classList.remove("clicked");
             setTimeout(() => {
                 bigMenu.style.display = "none";
-            }, 100)
+            }, 400)
         } else {
             setMenuOpen(true);
             bigMenu.style.display = "initial";
@@ -56,7 +57,7 @@ export const Navbar = () => {
             <nav>
                 <div className="navbar-container">
                     <div className="navbar-logo">
-                        <span>Ares.Web</span>
+                        <Link to={"/"}><span>Ares.Web</span></Link>
                     </div>
                     <div className="navbar-menu-option">
                         <span onClick={toggleBigMenu} id="menu">[ MENU ]</span>
@@ -68,32 +69,41 @@ export const Navbar = () => {
                         </div>
                     </div>
                     <div className="navbar-about-option">
-                        <span>About</span>
+                        <Link to={"/about"}><span>About</span></Link>
                     </div>
                 </div>
             </nav>
             {/*  Big Menu  */}
             <section className="bigMenu" id="bigMenu">
                 <div className="bigMenu-container" ref={bigMenu_item}>
-                    <div className="bigMenu-item">
-                        <span>Menu Option</span>
-                        <i className="fa-solid fa-arrow-right"/>
-                    </div>
-                    <div className="bigMenu-item">
-                        <span>Web Scraping</span>
-                        <i className="fa-solid fa-arrow-right"/>
-                    </div>
-                    <div className="bigMenu-item">
-                        <span>Github</span>
-                        <i className="fa-solid fa-arrow-right"/>
-                    </div>
-                    <div className="bigMenu-item">
-                        <span>About</span>
-                        <i className="fa-solid fa-arrow-right"/>
-                    </div>
+                    <Link to={"/"}>
+                        <div className="bigMenu-item">
+                            <span>Menu Option</span>
+                            <i className="fa-solid fa-arrow-right"/>
+                        </div>
+                    </Link>
+                    <Link to={"/web-scraping"}>
+                        <div className="bigMenu-item">
+                            <span>Web Scraping</span>
+                            <i className="fa-solid fa-arrow-right"/>
+                        </div>
+                    </Link>
+                    <a href="https://github.com/HemantDutta/Ares.Web" target={"_blank"}>
+                        <div className="bigMenu-item">
+                            <span>Github</span>
+                            <i className="fa-solid fa-arrow-right"/>
+                        </div>
+                    </a>
+                    <Link to={"/about"}>
+                        <div className="bigMenu-item">
+                            <span>About</span>
+                            <i className="fa-solid fa-arrow-right"/>
+                        </div>
+                    </Link>
                 </div>
             </section>
-            {/*  Big Menu End  */}
+            {/*  Big Menu End  */
+            }
         </>
     )
 }
