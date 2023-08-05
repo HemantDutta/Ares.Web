@@ -615,6 +615,8 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     padding: 10px;
     transition: background-color 0.2s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .search .search-results-container .search-results-grid .result-item:hover {
@@ -623,12 +625,8 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 }
 
 .search .search-results-container .search-results-grid .result-item .result-content {
-    position: absolute;
-    width: 100%;
     transition: background-color 0.2s ease;
-    left: 0;
     padding: 1rem;
-    bottom: -125px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -642,13 +640,16 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 }
 
 .search .search-results-container .search-results-grid .result-item .result-content .result-title {
-    font-size: 36px;
-
+    font-size: 28px;
     letter-spacing: 2px;
 }
 
+.search .search-results-container .search-results-grid .result-item .result-content .result-title span{
+
+}
+
 .search .search-results-container .search-results-grid .result-item .result-img {
-    height: 500px;
+    height: 350px;
     width: 100%;
 }
 
@@ -658,6 +659,11 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     object-fit: cover;
 }
 
+.search .search-results-container .search-results-grid .result-item .result-content .result-cta {
+    display: flex;
+    justify-content: space-between;
+}
+
 .search .search-results-container .search-results-grid .result-item .result-content .result-cta a {
     background-color: #fff;
     color: #111;
@@ -665,6 +671,22 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     clip-path: polygon(0 0em, 0em 0, 100% 0, 100% calc(100% - 0.8em), calc(100% - 0.8em) 100%, 0 100%);
 }
 
+.search .search-results-container .search-results-grid .result-item .result-content .result-cta span{
+    padding-right: 15px;
+    transition: padding-right 0.2s ease;
+}
+
+.search .search-results-container .search-results-grid .result-item .result-content .result-cta span.inside{
+    padding: 0;
+}
+
+.search .search-results-container .search-results-grid .result-item .result-content .result-cta span.inside.color-verge{
+    color: #5200ff;
+}
+
+.search .search-results-container .search-results-grid .result-item:hover .result-content .result-cta span{
+    padding: 0;
+}
 /*==========Search Page End==========*/
 
 

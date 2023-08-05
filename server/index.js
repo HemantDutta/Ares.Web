@@ -1,7 +1,10 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const app = express();
+const cors = require('cors');
 const port = 5000;
+
+app.use(cors());
 
 app.listen(port, ()=>{
     console.log("Server is listening on port: ", port);
@@ -12,19 +15,43 @@ app.get("/", (req,res)=>{
 });
 
 app.get("/test-scraping", async (req,res)=>{
-    const url = "https://www.theverge.com/search?q=React";
+    const url = "https://www.theverge.com/search?q=React%20js";
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.goto(url);
+    await autoScroll(page,50)
     const titleData = await page.evaluate(()=>{
-        const titles = Array.from(document.querySelectorAll(".max-w-content-block-standard"));
-        const data = titles.map((news)=>({
-            title: news.querySelector("h2 a").innerText
-        }))
-        return data;
+        const titles = Array.from(document.querySelectorAll(".max-w-container-md"));
+        return titles.map((news) => ({
+            title: news.querySelector("h2 a").innerText,
+            link: "https://www.theverge.com/"+news.querySelector("h2 a").getAttribute("href"),
+            desc: news.querySelector(".duet--article--dangerously-set-cms-markup").innerText,
+            imgSrc: news.querySelector("div.aspect-square a span img").getAttribute("src"),
+            from: "The Verge",
+            color: "verge"
+        }));
     })
-
-    console.log(titleData);
-
+    res.send(titleData);
     await browser.close();
+
+    //Scroll Entire Page to avoid lazy loading images
+    async function autoScroll(page, maxScrolls){
+        await page.evaluate(async (maxScrolls) => {
+            await new Promise((resolve) => {
+                let totalHeight = 0;
+                let distance = 100;
+                let scrolls = 0;  // scrolls counter
+                let timer = setInterval(() => {
+                    let scrollHeight = document.body.scrollHeight;
+                    window.scrollBy(0, distance);
+                    totalHeight += distance;
+                    scrolls++;
+                    if(totalHeight >= scrollHeight - window.innerHeight || scrolls >= maxScrolls){
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, 100);
+            });
+        }, maxScrolls);
+    }
 });
