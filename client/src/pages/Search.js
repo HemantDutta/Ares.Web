@@ -2,11 +2,15 @@ import {Navbar} from "../components/Navbar";
 import axios from "axios";
 import {useEffect, useState, useLayoutEffect, useRef} from "react";
 import {gsap} from "gsap";
+import {useLocation} from "react-router-dom";
 
 export const Search = () => {
 
+    const home_term = useLocation().state;
+
     //Refs
     const newsGrid = useRef(null);
+    const firstRender = useRef(true);
 
     //States
     const [news, setNews] = useState([]);
@@ -14,6 +18,25 @@ export const Search = () => {
     const [search, setSearch] = useState('');
     const [loader, setLoader] = useState(false);
     const [newAnim, setNewsAnim] = useState(false);
+    const [sDone, setSDone] = useState(false);
+
+    //Search Term from Home
+    useEffect(()=>{
+        setSearch(home_term);
+    },[])
+
+    useEffect(()=>{
+        if(firstRender.current){
+            firstRender.current = false;
+        }
+        else{
+            if(!sDone){
+                fetchNews()
+                setSDone(true);
+            }
+        }
+    },[search])
+
 
     function toggleSearchOn() {
         let btn = document.getElementById("search-btn");

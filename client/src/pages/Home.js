@@ -1,9 +1,12 @@
 import {Navbar} from "../components/Navbar";
 import {Link} from "react-router-dom";
 import gsap from "gsap";
-import {useLayoutEffect, useRef} from "react";
+import {useLayoutEffect, useRef, useState} from "react";
 
 export const Home = () => {
+
+    //States
+    const [search, setSearch] = useState('');
 
     //Refs
     const header_ref = useRef(null);
@@ -35,8 +38,8 @@ export const Home = () => {
                             </div>
                             <div className="hero-left-search">
                                 <div className="search-container" ref={search_ref}>
-                                    <input type="text" name="search" id="search" placeholder="Explore Latest Tech Updates..."/>
-                                    <i className="fa-solid fa-magnifying-glass"/>
+                                    <input type="text" name="search" id="search" placeholder="Explore Latest Tech Updates..." onChange={(e)=>{setSearch(e.target.value)}}/>
+                                    <Link to="/search" state={search}><i className="fa-solid fa-magnifying-glass"/></Link>
                                 </div>
                             </div>
                             <div className="hero-left-cta" ref={cta_ref}>
