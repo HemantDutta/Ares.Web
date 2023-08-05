@@ -10,6 +10,7 @@ export const Search = () => {
 
     //States
     const [news, setNews] = useState([]);
+    const [news2, setNews2] = useState([]);
     const [search, setSearch] = useState('');
     const [loader, setLoader] = useState(false);
     const [newAnim, setNewsAnim] = useState(false);
@@ -19,7 +20,9 @@ export const Search = () => {
         let ser = document.getElementById("search");
         if (!btn.classList.contains("show")) {
             btn.classList.add("show");
-            ser.style.transform = "none";
+            if(window.innerWidth>500){
+                ser.style.transform = "none";
+            }
         }
     }
 
@@ -28,24 +31,45 @@ export const Search = () => {
         let ser = document.getElementById("search");
         if (btn.classList.contains("show")) {
             btn.classList.remove("show");
-            ser.style.transform = "translateX(12%)";
+            if(window.innerWidth>500){
+                ser.style.transform = "translateX(12%)";
+            }
         }
     }
 
-    //Fetching News from Backend
+    //Fetching News from Verge
     function fetchNews() {
         setNewsAnim(false);
         setNews([]);
+        setNews2([]);
         setLoader(true);
-        axios.get(`http://localhost:5000/test-scraping?search=${search}`).then((res) => {
+        axios.get(`http://localhost:5000/verge-scraping?search=${search}`).then((res) => {
             setNews(res.data);
-            setLoader(false)
-            setNewsAnim(true);
+            fetchNews2()
         });
     }
 
+    //Fetching News From Venture Beat
+    function fetchNews2() {
+        axios.get(`http://localhost:5000/vb-scraping?search=${search}`).then((res) => {
+            setNews2(res.data);
+            setLoader(false)
+            setNewsAnim(true);
+        })
+    }
+
     useEffect(() => {
-    }, [news])
+        if(loader){
+           let text = document.getElementById("searchLoadText");
+           text.innerText = "Loading...";
+           setTimeout(()=>{
+               text.innerText = "Sharpening our digital knife...";
+               setTimeout(()=>{
+                   text.innerText = "Scraping The Digital Surface..."
+               },5000)
+           },5000)
+        }
+    }, [news2])
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -73,37 +97,66 @@ export const Search = () => {
                     <button onClick={fetchNews} id="search-btn"><i className="fa-solid fa-magnifying-glass"/></button>
                 </div>
                 <div className="search-results-container">
-                    <div className="search-results-grid" ref={newsGrid}>
-                        {
-                            news.map((value, index) => {
-                                return (
-                                    <div className="result-container">
-                                        <div className="result-item" key={index}>
-                                            <div className="result-img">
-                                                <img src={value.imgSrc} alt="Search Result"/>
-                                            </div>
-                                            <div className="result-content">
-                                                <div className="result-title">
-                                                    <span>{value.title}</span>
+                    {
+                        news2.length !== 0 &&
+                        <div className="search-results-grid" ref={newsGrid}>
+                            {
+                                news.map((value, index) => {
+                                    return (
+                                        <div className="result-container">
+                                            <div className="result-item" key={index}>
+                                                <div className="result-img">
+                                                    <img src={value.imgSrc} alt="Search Result"/>
                                                 </div>
-                                                <div className="result-des">
-                                                    <span>{value.desc}</span>
-                                                </div>
-                                                <div className="result-cta">
-                                                    <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
-                                                    <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                <div className="result-content">
+                                                    <div className="result-title">
+                                                        <span>{value.title}</span>
+                                                    </div>
+                                                    <div className="result-des">
+                                                        <span>{value.desc}</span>
+                                                    </div>
+                                                    <div className="result-cta">
+                                                        <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                        <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                                    )
+                                })
+                            }
+                            {
+                                news2.map((value, index) => {
+                                    return (
+                                        <div className="result-container">
+                                            <div className="result-item" key={index}>
+                                                <div className="result-img">
+                                                    <img src={value.imgSrc} alt="Search Result"/>
+                                                </div>
+                                                <div className="result-content">
+                                                    <div className="result-title">
+                                                        <span>{value.title}</span>
+                                                    </div>
+                                                    <div className="result-des">
+                                                        <span>{value.desc}</span>
+                                                    </div>
+                                                    <div className="result-cta">
+                                                        <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                        <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    }
+
                     {
                         loader &&
                         <div className="search-loader">
-                            <span>Scraping The Digital Surface</span>
+                            <span id="searchLoadText">Scraping The Digital Surface</span>
                             <img src="assets/loader/ares_loading.svg" alt="Loading..."/>
                         </div>
                     }
