@@ -1,7 +1,6 @@
 import {Navbar} from "../components/Navbar";
 import {Link} from "react-router-dom";
 import gsap from "gsap";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useLayoutEffect, useRef} from "react";
 
 export const Home = () => {

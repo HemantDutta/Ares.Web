@@ -23,9 +23,9 @@ app.get("/test-scraping", async (req,res)=>{
     const titleData = await page.evaluate(()=>{
         const titles = Array.from(document.querySelectorAll(".max-w-container-md"));
         return titles.map((news) => ({
-            title: news.querySelector("h2 a").innerText,
+            title: news.querySelector("h2 a").innerText.substring(0,66)+"...",
             link: "https://www.theverge.com/"+news.querySelector("h2 a").getAttribute("href"),
-            desc: news.querySelector(".duet--article--dangerously-set-cms-markup").innerText,
+            desc: news.querySelector(".duet--article--dangerously-set-cms-markup").innerText.substring(0,122)+"...",
             imgSrc: news.querySelector("div.aspect-square a span img").getAttribute("src"),
             from: "The Verge",
             color: "verge"

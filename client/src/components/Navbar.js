@@ -88,7 +88,7 @@ export const Navbar = () => {
                             <i className="fa-solid fa-arrow-right"/>
                         </div>
                     </Link>
-                    <a href="https://github.com/HemantDutta/Ares.Web" target={"_blank"}>
+                    <a href="https://github.com/HemantDutta/Ares.Web" target={"_blank"} rel="noreferrer">
                         <div className="bigMenu-item">
                             <span>Github</span>
                             <i className="fa-solid fa-arrow-right"/>

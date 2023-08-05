@@ -47,7 +47,7 @@ export const Search = () => {
                         {
                             news.map((value,index)=>{
                                 return(
-                                    <div className="result-item">
+                                    <div className="result-item" key={index}>
                                         <div className="result-img">
                                             <img src={value.imgSrc} alt="Search Result"/>
                                         </div>
@@ -59,7 +59,7 @@ export const Search = () => {
                                                 <span>{value.desc}</span>
                                             </div>
                                             <div className="result-cta">
-                                                <a href={value.link} target="_blank">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
                                                 <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
                                             </div>
                                         </div>
