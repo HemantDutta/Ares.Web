@@ -505,10 +505,6 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     transform: translateX(12%);
 }
 
-.search .search-bar-container input:focus {
-    transform: none;
-}
-
 .search .search-bar-container input::placeholder {
     color: black;
     transform: translateX(25%);
@@ -604,6 +600,10 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     gap: 1rem;
 }
 
+.search .search-results-container .search-results-grid .result-container{
+    overflow-y: hidden;
+}
+
 @media screen and (max-width: 1500px) {
     .search .search-results-container .search-results-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -647,10 +647,6 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 .search .search-results-container .search-results-grid .result-item .result-content .result-title {
     font-size: 28px;
     letter-spacing: 2px;
-}
-
-.search .search-results-container .search-results-grid .result-item .result-content .result-title span {
-
 }
 
 .search .search-results-container .search-results-grid .result-item .result-img {
@@ -701,6 +697,12 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     .search .search-results-container{
         padding: 3rem 0;
     }
+}
+
+.search .search-results-container .search-loader{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
 /*==========Search Page End==========*/

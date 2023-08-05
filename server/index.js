@@ -15,7 +15,15 @@ app.get("/", (req,res)=>{
 });
 
 app.get("/test-scraping", async (req,res)=>{
-    const url = "https://www.theverge.com/search?q=React%20js";
+    let userSearch = req.query.search;
+    let temp_words = userSearch.split(" ");
+    userSearch = temp_words[0];
+    for(let i = 1;i<temp_words.length;i++)
+    {
+        userSearch+="%20";
+        userSearch+=temp_words[i];
+    }
+    const url = `https://www.theverge.com/search?q=${userSearch}`;
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.goto(url);
@@ -34,24 +42,25 @@ app.get("/test-scraping", async (req,res)=>{
     res.send(titleData);
     await browser.close();
 
-    //Scroll Entire Page to avoid lazy loading images
-    async function autoScroll(page, maxScrolls){
-        await page.evaluate(async (maxScrolls) => {
-            await new Promise((resolve) => {
-                let totalHeight = 0;
-                let distance = 100;
-                let scrolls = 0;  // scrolls counter
-                let timer = setInterval(() => {
-                    let scrollHeight = document.body.scrollHeight;
-                    window.scrollBy(0, distance);
-                    totalHeight += distance;
-                    scrolls++;
-                    if(totalHeight >= scrollHeight - window.innerHeight || scrolls >= maxScrolls){
-                        clearInterval(timer);
-                        resolve();
-                    }
-                }, 100);
-            });
-        }, maxScrolls);
-    }
 });
+
+//Scroll Entire Page to avoid lazy loading images
+async function autoScroll(page, maxScrolls){
+    await page.evaluate(async (maxScrolls) => {
+        await new Promise((resolve) => {
+            let totalHeight = 0;
+            let distance = 100;
+            let scrolls = 0;  // scrolls counter
+            let timer = setInterval(() => {
+                let scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
+                scrolls++;
+                if(totalHeight >= scrollHeight - window.innerHeight || scrolls >= maxScrolls){
+                    clearInterval(timer);
+                    resolve();
+                }
+            }, 100);
+        });
+    }, maxScrolls);
+}
