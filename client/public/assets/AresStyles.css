@@ -592,6 +592,14 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     padding: 3rem 1rem;
 }
 
+.search .search-results-container .search-result-count{
+    padding: 1rem;
+}
+
+.search .search-results-container .search-result-count span{
+    font-size: 24px;
+}
+
 .search .search-results-container .search-results-grid {
     display: grid;
     justify-content: stretch;

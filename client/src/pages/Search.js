@@ -19,24 +19,24 @@ export const Search = () => {
     const [loader, setLoader] = useState(false);
     const [newAnim, setNewsAnim] = useState(false);
     const [sDone, setSDone] = useState(false);
+    const [resultsCount, setResultsCount] = useState(0);
 
     //Search Term from Home
-    useEffect(()=>{
+    useEffect(() => {
         setSearch(home_term);
-    },[])
+    }, [])
 
     //Fetch News when search term received from home
-    useEffect(()=>{
-        if(firstRender.current){
+    useEffect(() => {
+        if (firstRender.current) {
             firstRender.current = false;
-        }
-        else{
-            if(!sDone){
+        } else {
+            if (!sDone) {
                 fetchNews()
                 setSDone(true);
             }
         }
-    },[search])
+    }, [search])
 
     //Search Bar Animation
     function toggleSearchOn() {
@@ -44,7 +44,7 @@ export const Search = () => {
         let ser = document.getElementById("search");
         if (!btn.classList.contains("show")) {
             btn.classList.add("show");
-            if(window.innerWidth>500){
+            if (window.innerWidth > 500) {
                 ser.style.transform = "none";
             }
         }
@@ -56,7 +56,7 @@ export const Search = () => {
         let ser = document.getElementById("search");
         if (btn.classList.contains("show")) {
             btn.classList.remove("show");
-            if(window.innerWidth>500){
+            if (window.innerWidth > 500) {
                 ser.style.transform = "translateX(12%)";
             }
         }
@@ -85,16 +85,18 @@ export const Search = () => {
 
     //Loader Text Animation
     useEffect(() => {
-        if(loader){
-           let text = document.getElementById("searchLoadText");
-           text.innerText = "Loading...";
-           setTimeout(()=>{
-               text.innerText = "Sharpening our digital knife...";
-               setTimeout(()=>{
-                   text.innerText = "Scraping The Digital Surface..."
-               },5000)
-           },5000)
+        if (loader) {
+            let text = document.getElementById("searchLoadText");
+            text.innerText = "Loading...";
+            setTimeout(() => {
+                text.innerText = "Sharpening our digital knife...";
+                setTimeout(() => {
+                    text.innerText = "Scraping The Digital Surface..."
+                }, 5000)
+            }, 5000)
         }
+        let count = news.length + news2.length;
+        setResultsCount(count);
     }, [news2])
 
     //Result Item Animation
@@ -111,6 +113,14 @@ export const Search = () => {
         return () => ctx.revert();
     }, [newAnim])
 
+    //Fix Search Bar on Resize (Mobile)
+    window.addEventListener("resize", ()=>{
+        let ser = document.getElementById("search");
+        if(window.innerWidth < 500){
+            ser.style.transform = "none";
+        }
+    })
+
     return (
         <>
             <div className="header-container">
@@ -126,58 +136,63 @@ export const Search = () => {
                 <div className="search-results-container">
                     {
                         news2.length !== 0 &&
-                        <div className="search-results-grid" ref={newsGrid}>
-                            {
-                                news.map((value, index) => {
-                                    return (
-                                        <div className="result-container">
-                                            <div className="result-item" key={index}>
-                                                <div className="result-img">
-                                                    <img src={value.imgSrc} alt="Search Result"/>
-                                                </div>
-                                                <div className="result-content">
-                                                    <div className="result-title">
-                                                        <span>{value.title}</span>
+                        <>
+                            <div className="search-result-count">
+                                <span>{resultsCount} results found</span>
+                            </div>
+                            <div className="search-results-grid" ref={newsGrid}>
+                                {
+                                    news.map((value, index) => {
+                                        return (
+                                            <div className="result-container">
+                                                <div className="result-item" key={index}>
+                                                    <div className="result-img">
+                                                        <img src={value.imgSrc} alt="Search Result"/>
                                                     </div>
-                                                    <div className="result-des">
-                                                        <span>{value.desc}</span>
-                                                    </div>
-                                                    <div className="result-cta">
-                                                        <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
-                                                        <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                            {
-                                news2.map((value, index) => {
-                                    return (
-                                        <div className="result-container">
-                                            <div className="result-item" key={index}>
-                                                <div className="result-img">
-                                                    <img src={value.imgSrc} alt="Search Result"/>
-                                                </div>
-                                                <div className="result-content">
-                                                    <div className="result-title">
-                                                        <span>{value.title}</span>
-                                                    </div>
-                                                    <div className="result-des">
-                                                        <span>{value.desc}</span>
-                                                    </div>
-                                                    <div className="result-cta">
-                                                        <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
-                                                        <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                    <div className="result-content">
+                                                        <div className="result-title">
+                                                            <span>{value.title}</span>
+                                                        </div>
+                                                        <div className="result-des">
+                                                            <span>{value.desc}</span>
+                                                        </div>
+                                                        <div className="result-cta">
+                                                            <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                            <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                                        )
+                                    })
+                                }
+                                {
+                                    news2.map((value, index) => {
+                                        return (
+                                            <div className="result-container">
+                                                <div className="result-item" key={index}>
+                                                    <div className="result-img">
+                                                        <img src={value.imgSrc} alt="Search Result"/>
+                                                    </div>
+                                                    <div className="result-content">
+                                                        <div className="result-title">
+                                                            <span>{value.title}</span>
+                                                        </div>
+                                                        <div className="result-des">
+                                                            <span>{value.desc}</span>
+                                                        </div>
+                                                        <div className="result-cta">
+                                                            <a href={value.link} target="_blank" rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                            <span>By<span className={`inside color-${value.color}`}> {value.from}</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </>
                     }
 
                     {
