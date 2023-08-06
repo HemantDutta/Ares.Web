@@ -40,6 +40,7 @@ app.get("/verge-scraping", async (req, res) => {
             color: "verge"
         }));
     })
+    res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
     res.send(titleData);
     await browser.close();
 });
@@ -69,6 +70,7 @@ app.get("/vb-scraping", async (req, res) => {
             color: "vb"
         }));
     })
+    res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
     res.send(titleData);
     await browser.close();
 });
