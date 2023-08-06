@@ -205,6 +205,9 @@ export const Search = () => {
                                     })
                                 }
                             </div>
+                            <div className="search-thatS-it">
+                                <span>That's It</span>
+                            </div>
                         </>
                     }
                     {
