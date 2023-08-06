@@ -24,6 +24,13 @@ export const Home = () => {
             .from(cta_ref.current, {xPercent: -100, autoAlpha: 0, duration: 0.4, delay: 0.1}, 1)
     }, []);
 
+    //Keydown event handler for search input
+    function handleKeyDown(e){
+        if(e.key === "Enter"){
+            document.getElementById("searchBtn").click();
+        }
+    }
+
     return (
         <>
             <div className="header-container">
@@ -38,8 +45,8 @@ export const Home = () => {
                             </div>
                             <div className="hero-left-search">
                                 <div className="search-container" ref={search_ref}>
-                                    <input type="text" name="search" id="search" placeholder="Explore Latest Tech Updates..." onChange={(e)=>{setSearch(e.target.value)}}/>
-                                    <Link to="/search" state={search}><i className="fa-solid fa-magnifying-glass"/></Link>
+                                    <input type="text" name="search" id="search" placeholder="Explore Latest Tech Updates..." onChange={(e)=>{setSearch(e.target.value)}} onKeyDown={handleKeyDown}/>
+                                    <Link to="/search" state={search} id="searchBtn"><i className="fa-solid fa-magnifying-glass"/></Link>
                                 </div>
                             </div>
                             <div className="hero-left-cta" ref={cta_ref}>

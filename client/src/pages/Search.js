@@ -25,6 +25,7 @@ export const Search = () => {
         setSearch(home_term);
     },[])
 
+    //Fetch News when search term received from home
     useEffect(()=>{
         if(firstRender.current){
             firstRender.current = false;
@@ -37,7 +38,7 @@ export const Search = () => {
         }
     },[search])
 
-
+    //Search Bar Animation
     function toggleSearchOn() {
         let btn = document.getElementById("search-btn");
         let ser = document.getElementById("search");
@@ -49,6 +50,7 @@ export const Search = () => {
         }
     }
 
+    //Search Bar Animation
     function toggleSearchOff() {
         let btn = document.getElementById("search-btn");
         let ser = document.getElementById("search");
@@ -81,6 +83,7 @@ export const Search = () => {
         })
     }
 
+    //Loader Text Animation
     useEffect(() => {
         if(loader){
            let text = document.getElementById("searchLoadText");
@@ -94,6 +97,7 @@ export const Search = () => {
         }
     }, [news2])
 
+    //Result Item Animation
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             gsap.from(".result-container .result-item", {
