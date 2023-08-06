@@ -15,6 +15,12 @@
     --accent-color: #A076F9;
 }
 
+/*Accent Color*/
+.accent-color{
+    color: var(--accent-color); !important;
+}
+/*Accent Color*/
+
 @media (prefers-reduced-motion: no-preference) {
     :root {
         scroll-behavior: smooth;
@@ -746,6 +752,96 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     z-index: 100;
 }
 /*==========Search Page End==========*/
+
+/*==========Web Scraping Page==========*/
+
+.web-scraping-header{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.web-scraping-header span.ws_ws{
+    font-size: 106px;
+    z-index: 110;
+    display: inline-block;
+    position: relative;
+}
+
+.web-scraping-header span.ws_wt{
+    font-size: 46px;
+    z-index: 110;
+    display: inline-block;
+    position: relative;
+}
+
+.web-scraping-header img{
+    position: absolute;
+    height: 450px;
+    width: 450px;
+    z-index: 100;
+    margin: auto;
+    inset: 0;
+    clip-path: none;
+}
+
+.web-scraping-header .span-cont{
+    overflow-y: hidden;
+}
+
+@media screen and (max-width: 745px) {
+    .web-scraping-header span.ws_ws{
+        font-size: 76px;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .web-scraping-header span.ws_ws{
+        font-size: 56px;
+    }
+
+    .web-scraping-header span.ws_wt{
+        font-size: 36px;
+    }
+
+    .web-scraping-header img{
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .web-scraping-header span.ws_ws{
+        font-size: 36px;
+    }
+
+    .web-scraping-header span.ws_wt{
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .web-scraping-header span.ws_ws{
+        font-size: 26px;
+    }
+
+    .web-scraping-header span.ws_wt{
+        font-size: 16px;
+    }
+
+    .web-scraping-header img{
+        height: 150px;
+        width: 150px;
+    }
+}
+/*==========Web Scraping Page End==========*/
+
+
 
 
 

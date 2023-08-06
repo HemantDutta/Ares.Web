@@ -134,6 +134,13 @@ export const Search = () => {
         }
     })
 
+    //Handle Key Down For Search Bar
+    function handleKeyDown(e){
+        if(e.key === "Enter"){
+            fetchNews();
+        }
+    }
+
     return (
         <>
             <div className="header-container">
@@ -143,7 +150,7 @@ export const Search = () => {
                 <div className="search-bar-container" onFocus={toggleSearchOn} onBlur={toggleSearchOff}>
                     <input type="text" name="search" id="search" placeholder="Search Latest Tech Updates..." onChange={(e) => {
                         setSearch(e.target.value)
-                    }}/>
+                    }} onKeyDown={handleKeyDown}/>
                     <button onClick={fetchNews} id="search-btn"><i className="fa-solid fa-magnifying-glass"/></button>
                 </div>
                 <div className="search-results-container">
@@ -151,7 +158,7 @@ export const Search = () => {
                         resultsCount !==0 &&
                         <>
                             <div className="search-result-count">
-                                <span>{resultsCount} results found</span>
+                                <span>{resultsCount} results found for <span className="accent-color">{search}</span></span>
                             </div>
                             <div className="search-results-grid" ref={newsGrid}>
                                 {
@@ -160,7 +167,7 @@ export const Search = () => {
                                             <div className="result-container" key={index}>
                                                 <div className="result-item">
                                                     <div className="result-img">
-                                                        <img src={value.imgSrc} alt="Search Result"/>
+                                                        <img src={value.imgSrc} alt="Search Result" loading={"lazy"}/>
                                                     </div>
                                                     <div className="result-content">
                                                         <div className="result-title">
@@ -185,7 +192,7 @@ export const Search = () => {
                                             <div className="result-container" key={index}>
                                                 <div className="result-item">
                                                     <div className="result-img">
-                                                        <img src={value.imgSrc} alt="Search Result"/>
+                                                        <img src={value.imgSrc} alt="Search Result" loading={"lazy"}/>
                                                     </div>
                                                     <div className="result-content">
                                                         <div className="result-title">
@@ -215,7 +222,7 @@ export const Search = () => {
                         resultsCount === 0 && !loader &&
                         <>
                             <div className="search-result-count">
-                                <span>{resultsCount} results found</span>
+                                <span>{resultsCount} results found for <span className="accent-color">{search}</span></span>
                             </div>
                         </>
                     }

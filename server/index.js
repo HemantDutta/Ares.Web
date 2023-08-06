@@ -60,7 +60,7 @@ app.get("/vb-scraping", async (req, res) => {
     await page.goto(url, {waitUntil: 'domcontentloaded'});
     await autoScroll(page, 50);
     const titleData = await page.evaluate(() => {
-        const titles = Array.from(document.querySelectorAll(".ArticleListing:not(.ArticleListing--featured):not(.ArticleListing--pr)")).slice(0,10);
+        const titles = Array.from(document.querySelectorAll(".ArticleListing:not(.ArticleListing--featured):not(.ArticleListing--pr):not(.ArticleListing--s)")).slice(0,10);
         return titles.map((news) => ({
             title: news.querySelector(".ArticleListing__title a").innerText,
             link: news.querySelector(".ArticleListing__image-link").getAttribute("href"),
