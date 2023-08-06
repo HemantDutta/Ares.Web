@@ -720,6 +720,30 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
     align-items: center;
 }
 
+.search .search-results-container .search-thatS-it{
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.search .search-results-container .search-thatS-it span:not(.swirl){
+    background-color: #fff;
+    padding: 1rem;
+    position: relative;
+    z-index: 110;
+}
+
+.search .search-results-container .search-thatS-it span.swirl{
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 100%;
+    background-color: #111;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 100;
+}
 /*==========Search Page End==========*/
 
 

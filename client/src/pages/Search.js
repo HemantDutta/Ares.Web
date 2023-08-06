@@ -206,6 +206,7 @@ export const Search = () => {
                                 }
                             </div>
                             <div className="search-thatS-it">
+                                <span className="swirl"></span>
                                 <span>That's It</span>
                             </div>
                         </>
