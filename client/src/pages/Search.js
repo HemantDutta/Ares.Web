@@ -144,8 +144,8 @@ export const Search = () => {
                                 {
                                     news.map((value, index) => {
                                         return (
-                                            <div className="result-container">
-                                                <div className="result-item" key={index}>
+                                            <div className="result-container" key={index}>
+                                                <div className="result-item">
                                                     <div className="result-img">
                                                         <img src={value.imgSrc} alt="Search Result"/>
                                                     </div>
@@ -169,8 +169,8 @@ export const Search = () => {
                                 {
                                     news2.map((value, index) => {
                                         return (
-                                            <div className="result-container">
-                                                <div className="result-item" key={index}>
+                                            <div className="result-container" key={index}>
+                                                <div className="result-item">
                                                     <div className="result-img">
                                                         <img src={value.imgSrc} alt="Search Result"/>
                                                     </div>
