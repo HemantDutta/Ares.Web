@@ -25,12 +25,12 @@ app.get("/verge-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://www.theverge.com/search?q=${userSearch}`;
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto(url);
     await autoScroll(page, 50)
     const titleData = await page.evaluate(() => {
-        const titles = Array.from(document.querySelectorAll(".max-w-container-md"));
+        const titles = Array.from(document.querySelectorAll(".max-w-container-md")).slice(1,);
         return titles.map((news) => ({
             title: news.querySelector("h2 a").innerText.substring(0, 66) + "...",
             link: "https://www.theverge.com/" + news.querySelector("h2 a").getAttribute("href"),
@@ -54,12 +54,12 @@ app.get("/vb-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://venturebeat.com/?s=${userSearch}`;
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto(url, {waitUntil: 'domcontentloaded'});
     await autoScroll(page, 50);
     const titleData = await page.evaluate(() => {
-        const titles = Array.from(document.querySelectorAll(".ArticleListing")).slice(0,10);
+        const titles = Array.from(document.querySelectorAll(".ArticleListing")).slice(0,7);
         return titles.map((news) => ({
             title: news.querySelector(".ArticleListing__title a").innerText,
             link: news.querySelector(".ArticleListing__image-link").getAttribute("href"),
