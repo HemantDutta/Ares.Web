@@ -671,6 +671,7 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 .search .search-results-container .search-results-grid .result-item .result-content .result-cta {
     display: flex;
     justify-content: space-between;
+    column-gap: 10px;
 }
 
 .search .search-results-container .search-results-grid .result-item .result-content .result-cta a {
