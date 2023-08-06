@@ -113,11 +113,24 @@ export const Search = () => {
         return () => ctx.revert();
     }, [newAnim])
 
-    //Fix Search Bar on Resize (Mobile)
-    window.addEventListener("resize", ()=>{
-        let ser = document.getElementById("search");
-        if(window.innerWidth < 500){
-            ser.style.transform = "none";
+
+    //useEffect to remove event listener while unmounting
+    useEffect(() => {
+
+        const handleResize = () => {
+            let ser = document.getElementById("search");
+            if (window.innerWidth < 500) {
+                ser.style.transform = "none";
+            } else {
+                ser.style.transform = "translateX(12%)";
+            }
+        }
+
+        //Fix Search Bar on Resize (Mobile)
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
         }
     })
 
@@ -135,7 +148,7 @@ export const Search = () => {
                 </div>
                 <div className="search-results-container">
                     {
-                        news2.length !== 0 &&
+                        resultsCount !==0 &&
                         <>
                             <div className="search-result-count">
                                 <span>{resultsCount} results found</span>
@@ -194,7 +207,14 @@ export const Search = () => {
                             </div>
                         </>
                     }
-
+                    {
+                        resultsCount === 0 && !loader &&
+                        <>
+                            <div className="search-result-count">
+                                <span>{resultsCount} results found</span>
+                            </div>
+                        </>
+                    }
                     {
                         loader &&
                         <div className="search-loader">
