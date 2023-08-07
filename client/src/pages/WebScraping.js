@@ -29,7 +29,21 @@ export const WebScraping = () => {
             <div className="web-scraping-container">
                 <div>
                     <div className="web-scraping-content">
-                        <div className="web-scraping-item web-scraping-what"></div>
+                        <div className="web-scraping-item web-scraping-what">
+                            <div className="item-content">
+                                <div className="item-text-content">
+                                    <div className="item-header">
+                                        <span>What is Web Scraping?</span>
+                                    </div>
+                                    <div className="item-des">
+                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi mollitia quaerat reprehenderit ut! Commodi excepturi fugiat, itaque numquam quas temporibus.</span>
+                                    </div>
+                                </div>
+                                <div className="item-img-content">
+
+                                </div>
+                            </div>
+                        </div>
                         <div className="web-scraping-item web-scraping-how"></div>
                         <div className="web-scraping-item web-scraping-ethics"></div>
                     </div>

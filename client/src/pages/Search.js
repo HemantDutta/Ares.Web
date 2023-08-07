@@ -20,6 +20,7 @@ export const Search = () => {
     const [newAnim, setNewsAnim] = useState(false);
     const [sDone, setSDone] = useState(false);
     const [resultsCount, setResultsCount] = useState(0);
+    const [currTerm, setCurrTerm] = useState('');
 
     //Search Term from Home
     useEffect(() => {
@@ -96,6 +97,7 @@ export const Search = () => {
             }, 5000)
         }
         let count = news.length + news2.length;
+        setCurrTerm(search);
         setResultsCount(count);
     }, [news2])
 
@@ -111,7 +113,7 @@ export const Search = () => {
             })
         }, newsGrid)
         return () => ctx.revert();
-    }, [newAnim])
+    }, [resultsCount])
 
 
     //useEffect to remove event listener while unmounting
@@ -158,7 +160,7 @@ export const Search = () => {
                         resultsCount !==0 &&
                         <>
                             <div className="search-result-count">
-                                <span>{resultsCount} results found for <span className="accent-color">{search}</span></span>
+                                <span>{resultsCount} results found for <span className="accent-color">{currTerm}</span></span>
                             </div>
                             <div className="search-results-grid" ref={newsGrid}>
                                 {

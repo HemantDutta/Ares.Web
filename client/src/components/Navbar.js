@@ -1,4 +1,4 @@
-import {useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {gsap} from "gsap";
 import {Link} from "react-router-dom";
 
@@ -51,6 +51,25 @@ export const Navbar = () => {
         return () => ctx.revert();
     }, [menuOpen])
 
+    //HideNav
+    useEffect(()=>{
+        const hideNav = () => {
+            let nav = document.getElementsByTagName("nav")[0];
+            if(window.scrollY>150){
+                nav.style.transform = "translateY(-100%)";
+            }
+            else{
+                nav.style.transform = "none";
+            }
+        };
+
+        window.addEventListener("scroll", hideNav);
+
+        return()=>{
+            window.removeEventListener("scroll", hideNav);
+        }
+    },[])
+
 
     return (
         <>
@@ -76,12 +95,6 @@ export const Navbar = () => {
             {/*  Big Menu  */}
             <section className="bigMenu" id="bigMenu">
                 <div className="bigMenu-container" ref={bigMenu_item}>
-                    <Link to={"/"}>
-                        <div className="bigMenu-item">
-                            <span>Menu Option</span>
-                            <i className="fa-solid fa-arrow-right"/>
-                        </div>
-                    </Link>
                     <Link to={"/web-scraping"}>
                         <div className="bigMenu-item">
                             <span>Web Scraping</span>
