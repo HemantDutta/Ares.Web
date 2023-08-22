@@ -1,13 +1,18 @@
 import {Navbar} from "../components/Navbar";
 import {useLayoutEffect, useRef} from "react";
 import gsap from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 export const WebScraping = () => {
+
+    gsap.registerPlugin(ScrollTrigger);
 
     //refs
     const ws_img = useRef(null);
     const ws_wt = useRef(null);
     const ws_ws = useRef(null);
+    const wsd_1 = useRef(null);
+    const wsh_1 = useRef(null);
 
     //Landing Animation
     useLayoutEffect(()=>{
@@ -17,6 +22,21 @@ export const WebScraping = () => {
             .from(ws_ws.current, {yPercent: 100, autoAlpha: 0, duration: 0.4},1)
             .from(ws_wt.current, {yPercent: 100, autoAlpha: 0, duration: 0.4, delay: 0.2}, 1)
     },[])
+
+    //Scraping Slide Item Animations
+    useLayoutEffect(()=>{
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: wsh_1.current
+            }
+        });
+        tl
+            .from(wsh_1.current, {yPercent: 100, duration: 0.6})
+            .from(wsd_1.current, {clipPath: "polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%)", backgroundColor: "#FFF"})
+    },[])
+
+    //Horizontal Scroll Animation
+
 
     return(
         <>
@@ -33,10 +53,10 @@ export const WebScraping = () => {
                             <div className="item-content">
                                 <div className="item-text-content">
                                     <div className="item-header">
-                                        <span>What is Web Scraping?</span>
+                                        <span ref={wsh_1} className="dis-ib">What is Web Scraping?</span>
                                     </div>
-                                    <div className="item-des">
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi mollitia quaerat reprehenderit ut! Commodi excepturi fugiat, itaque numquam quas temporibus.</span>
+                                    <div className="item-des" ref={wsd_1}>
+                                        <span>Web scraping is a powerful technique used to automatically extract data from websites. In essence, it enables you to transform unstructured and publicly available data into a structured and organized format that can be analyzed and utilized for various purposes. This process is accomplished by using specialized software or tools that access websites, simulate human browsing behavior, and extract the desired information.</span>
                                     </div>
                                 </div>
                                 <div className="item-img-content">

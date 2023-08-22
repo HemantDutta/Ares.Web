@@ -93,8 +93,11 @@ export const Search = () => {
                 text.innerText = "Sharpening our digital knife...";
                 setTimeout(() => {
                     text.innerText = "Scraping The Digital Surface..."
-                }, 5000)
-            }, 5000)
+                    setTimeout(()=>{
+                        text.innerText = "Almost there..."
+                    },3000)
+                }, 3000)
+            }, 3000)
         }
         let count = news.length + news2.length;
         setCurrTerm(search);

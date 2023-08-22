@@ -51,16 +51,22 @@ export const Navbar = () => {
         return () => ctx.revert();
     }, [menuOpen])
 
+    //Old Scroll value
+    let oldScroll = window.scrollY;
+
     //HideNav
     useEffect(()=>{
         const hideNav = () => {
             let nav = document.getElementsByTagName("nav")[0];
-            if(window.scrollY>150){
+            if(window.scrollY>oldScroll){
                 nav.style.transform = "translateY(-100%)";
             }
             else{
-                nav.style.transform = "none";
+                setTimeout(()=>{
+                    nav.style.transform = "none";
+                },100)
             }
+            oldScroll = window.scrollY;
         };
 
         window.addEventListener("scroll", hideNav);

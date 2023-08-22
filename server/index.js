@@ -25,10 +25,10 @@ app.get("/verge-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://www.theverge.com/search?q=${userSearch}`;
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
-    await page.goto(url);
-    await autoScroll(page, 50)
+    await page.goto(url, {timeout: 0});
+    await autoScroll(page, 50);
     const titleData = await page.evaluate(() => {
         const titles = Array.from(document.querySelectorAll(".max-w-container-md")).slice(1,);
         return titles.map((news) => ({
@@ -55,9 +55,9 @@ app.get("/vb-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://venturebeat.com/?s=${userSearch}`;
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
-    await page.goto(url, {waitUntil: 'domcontentloaded'});
+    await page.goto(url);
     await autoScroll(page, 50);
     const titleData = await page.evaluate(() => {
         const titles = Array.from(document.querySelectorAll(".ArticleListing:not(.ArticleListing--featured):not(.ArticleListing--pr):not(.ArticleListing--s)")).slice(0,10);
@@ -72,6 +72,49 @@ app.get("/vb-scraping", async (req, res) => {
     })
     res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
     res.send(titleData);
+    await browser.close();
+});
+
+//Feed Headline techNewsWorld
+app.get("/feed-headline", async (req,res)=>{
+    const url = "https://www.technewsworld.com/section/tech-blog";
+    const browser = await puppeteer.launch({headless: true});
+    const page = await browser.newPage();
+    await page.goto(url, {timeout: 0});
+    const news = await page.evaluate(()=> {
+       const newsHead = Array.from(document.querySelectorAll(".category-inn"));
+       return newsHead.map((x)=>({
+           title: x.querySelector(".catogory-pic a h2.heading-title").innerText,
+           link: x.querySelector(".catogory-pic a:has(> h2.heading-title)").getAttribute("href"),
+           desc: x.querySelector(".catogory-txt p a").innerText,
+           imgSrc: x.querySelector(".catogory-pic a img").getAttribute("src"),
+           from: "TechNewsWorld"
+       }));
+    });
+    res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
+    res.send(news);
+    await browser.close();
+});
+
+//Feed Content techNewsWorld
+app.get("/feed-content", async (req,res)=>{
+   const url = "https://www.technewsworld.com/section/tech-blog";
+   const browser = await puppeteer.launch({headless: false});
+   const page = await browser.newPage();
+   await page.goto(url, {timeout: 0});
+   await autoScroll(page, 50);
+   const news = await page.evaluate(()=>{
+       const newsFeed = Array.from(document.querySelectorAll(".search-item:not(.article-ad-row)"));
+       return newsFeed.map((x)=>({
+           title: x.querySelector(".search-txt a h2").innerText,
+           link: x.querySelector(".search-txt a").getAttribute("href"),
+           desc: x.querySelector("p").innerText,
+           imgSrc: x.querySelector(".search-pic img").getAttribute("src"),
+           from: "TechNewsWorld"
+       }));
+   });
+    res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
+    res.send(news);
     await browser.close();
 });
 
