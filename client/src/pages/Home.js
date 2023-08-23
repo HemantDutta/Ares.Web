@@ -67,7 +67,26 @@ export const Home = () => {
             fetchFeed();
             first_render.current = false;
         }
-    }, [])
+    }, []);
+
+    //Change Loading Text
+    useEffect(()=>{
+        if(loader){
+            let lTxt = document.getElementById("loader-txt");
+            setTimeout(()=>{
+                lTxt.innerText = "Scraping takes time...";
+                setTimeout(()=>{
+                    lTxt.innerText = "Almost There...";
+                    setTimeout(()=>{
+                        lTxt.innerText = "It usually doesn't take this long...";
+                        setTimeout(()=>{
+                            lTxt.innerText = "Thank you so much for your patience...";
+                        },8000)
+                    },8000)
+                },8000)
+            },8000)
+        }
+    },[])
 
 
     return (
@@ -108,7 +127,7 @@ export const Home = () => {
                             loader &&
                             <div className="feed-loader">
                                 <img src="assets/loader/ares_loading.svg" alt="Loading..."/>
-                                <span>Loading Feed...</span>
+                                <span id="loader-txt">Loading Feed...</span>
                             </div>
                         }
                         <div className="feed-headline">
