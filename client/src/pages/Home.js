@@ -147,7 +147,7 @@ export const Home = () => {
                                                     <p>{value.desc}</p>
                                                 </div>
                                                 <div className="headline-cta">
-                                                    <a href={value.link}>View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
+                                                    <a href={value.link} target={"_blank"} rel="noreferrer">View full article&nbsp;<i className="fa-solid fa-arrow-right"/></a>
                                                     <span>By {value.from}</span>
                                                 </div>
                                             </div>
