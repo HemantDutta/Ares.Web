@@ -136,7 +136,7 @@ app.get("/feed-content", async (req,res)=>{
    //  await browser.close();
 
     const url = "https://techcrunch.com/";
-    const browser = await puppeteer.launch({headless: false, defaultViewport: {
+    const browser = await puppeteer.launch({headless: true, defaultViewport: {
             width:1920,
             height:1080
         }});

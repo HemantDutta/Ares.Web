@@ -37,6 +37,8 @@ export const Search = () => {
                 setSDone(true);
             }
         }
+
+
     }, [search])
 
     //Search Bar Animation
@@ -95,6 +97,9 @@ export const Search = () => {
                     text.innerText = "Scraping The Digital Surface..."
                     setTimeout(()=>{
                         text.innerText = "Almost there..."
+                        setTimeout(()=>{
+                            text.innerText = "Thank you for your patience...";
+                        },3000)
                     },3000)
                 }, 3000)
             }, 3000)

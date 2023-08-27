@@ -42,7 +42,6 @@ export const Home = () => {
         axios.get("http://localhost:5000/feed-headline")
             .then((res) => {
                 setHeadline(res.data);
-                setLoader(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -54,6 +53,7 @@ export const Home = () => {
         axios.get("http://localhost:5000/feed-content")
             .then((res) => {
                 setNews(res.data);
+                setLoader(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -123,16 +123,8 @@ export const Home = () => {
                         <span>Feed</span>
                     </div>
                     <div className="feed-content">
-                        {
-                            loader &&
-                            <div className="feed-loader">
-                                <img src="assets/loader/ares_loading.svg" alt="Loading..."/>
-                                <span id="loader-txt">Loading Feed...</span>
-                            </div>
-                        }
                         <div className="feed-headline">
                             {
-                                !loader &&
                                 headline.map(((value, index) => {
                                     return (
                                         <div className="headline-item" key={index}>
@@ -156,13 +148,20 @@ export const Home = () => {
                                 }))
                             }
                             {
-                                !loader &&
+                                headline.length!==0 &&
                                 <div className="feed-headline-header">
                                     <span>Your Daily Dose</span>
                                     <span>of Tech News</span>
                                 </div>
                             }
                         </div>
+                        {
+                            loader &&
+                            <div className="feed-loader">
+                                <img src="assets/loader/ares_loading.svg" alt="Loading..."/>
+                                <span id="loader-txt">Loading Feed...</span>
+                            </div>
+                        }
                         <div className="feed-flex">
                             {
                                 news.map((value, index) => {
