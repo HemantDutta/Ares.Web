@@ -54,7 +54,8 @@ export const WebScraping = () => {
                 start: "top top",
                 end: "2000 top",
                 scrub: 0.6,
-                pin: true
+                pin: true,
+                snap: 0.50
             }
         });
 
