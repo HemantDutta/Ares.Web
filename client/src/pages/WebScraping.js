@@ -107,7 +107,7 @@ export const WebScraping = () => {
                                     </div>
                                 </div>
                                 <div className="item-img-content">
-                                    <img src="assets/images/wsh_1_img.webp" alt="Scraping Code"/>
+                                    <img src="assets/images/wb_slide_2_img.webp" alt="HTML Code"/>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ export const WebScraping = () => {
                                     </div>
                                 </div>
                                 <div className="item-img-content">
-                                    <img src="assets/images/wsh_1_img.webp" alt="Scraping Code"/>
+                                    <img src="assets/images/wsh_2_img.webp" alt="Ethical Guidelines"/>
                                 </div>
                             </div>
                         </div>
