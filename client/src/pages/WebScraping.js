@@ -59,7 +59,9 @@ export const WebScraping = () => {
             }
         });
 
-        return ()=>{pin.kill()}
+        return () => {
+            pin.kill()
+        }
 
     }, []);
 
@@ -135,7 +137,10 @@ export const WebScraping = () => {
                     </div>
                 </div>
             </div>
-            <div className="web-scraping-conclusion"></div>
+            <div className="web-scraping-conclusion">
+                <span>If you want to know more about this project</span>
+                <a href="https://github.com/HemantDutta/Ares.Web" rel="noreferrer" target="_blank">click here!</a>
+            </div>
         </>
     )
 }
