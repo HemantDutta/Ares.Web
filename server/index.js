@@ -77,26 +77,8 @@ app.get("/vb-scraping", async (req, res) => {
 
 //Feed Headline techNewsWorld
 app.get("/feed-headline", async (req,res)=>{
-    // const url = "https://www.technewsworld.com/section/tech-blog";
-    // const browser = await puppeteer.launch({headless: true});
-    // const page = await browser.newPage();
-    // await page.goto(url, {timeout: 0});
-    // const news = await page.evaluate(()=> {
-    //    const newsHead = Array.from(document.querySelectorAll(".category-inn"));
-    //    return newsHead.map((x)=>({
-    //        title: x.querySelector(".catogory-pic a h2.heading-title").innerText,
-    //        link: x.querySelector(".catogory-pic a:has(> h2.heading-title)").getAttribute("href"),
-    //        desc: x.querySelector(".catogory-txt p a").innerText,
-    //        imgSrc: x.querySelector(".catogory-pic a img").getAttribute("src"),
-    //        from: "TechNewsWorld"
-    //    }));
-    // });
-    // res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
-    // res.send(news);
-    // await browser.close();
-
     const url = "https://techcrunch.com/";
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.goto(url, {timeout: 0});
     const news = await page.evaluate(()=> {
@@ -104,7 +86,7 @@ app.get("/feed-headline", async (req,res)=>{
         return newsHead.map((x)=>({
             title: x.querySelector("h2.fi-main-block__title a").innerText,
             link: "https://techcrunch.com" +  x.querySelector("h2.fi-main-block__title a").getAttribute("href"),
-            desc: x.querySelector("h3.fi-main-block__subtitle").innerText,
+            desc: (x.querySelector("h3.fi-main-block__subtitle")) ?x.querySelector("h3.fi-main-block__subtitle").innerText : "",
             imgSrc: x.querySelector("figure.post-block__media img").getAttribute("src"),
             from: "TechCrunch"
         }));
@@ -116,27 +98,8 @@ app.get("/feed-headline", async (req,res)=>{
 
 //Feed Content techNewsWorld
 app.get("/feed-content", async (req,res)=>{
-   // const url = "https://www.technewsworld.com/section/tech-blog";
-   // const browser = await puppeteer.launch({headless: false});
-   // const page = await browser.newPage();
-   // await page.goto(url, {timeout: 0});
-   // await autoScroll(page, 50);
-   // const news = await page.evaluate(()=>{
-   //     const newsFeed = Array.from(document.querySelectorAll(".search-item:not(.article-ad-row)"));
-   //     return newsFeed.map((x)=>({
-   //         title: x.querySelector(".search-txt a h2").innerText,
-   //         link: x.querySelector(".search-txt a").getAttribute("href"),
-   //         desc: x.querySelector("p").innerText,
-   //         imgSrc: x.querySelector(".search-pic img").getAttribute("src"),
-   //         from: "TechNewsWorld"
-   //     }));
-   // });
-   //  res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
-   //  res.send(news);
-   //  await browser.close();
-
     const url = "https://techcrunch.com/";
-    const browser = await puppeteer.launch({headless: true, defaultViewport: {
+    const browser = await puppeteer.launch({headless: false, defaultViewport: {
             width:1920,
             height:1080
         }});

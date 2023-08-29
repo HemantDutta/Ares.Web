@@ -32,7 +32,8 @@ export const WebScraping = () => {
     useLayoutEffect(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: wsh_1.current
+                trigger: wsh_1.current,
+                toggleActions: "play pause none reset"
             }
         });
         tl
@@ -43,26 +44,27 @@ export const WebScraping = () => {
 
     //Horizontal Scroll Animation
     useEffect(() => {
-        const pin = gsap.fromTo(sectionRef.current, {
-            translateX: 0
-        }, {
-            translateX: "-200vw",
-            ease: "none",
-            duration: 1,
-            scrollTrigger: {
-                trigger: triggerRef.current,
-                start: "top top",
-                end: "2000 top",
-                scrub: 0.6,
-                pin: true,
-                snap: 0.50
+        // if (window.innerWidth > 991) {
+            const pin = gsap.fromTo(sectionRef.current, {
+                translateX: 0
+            }, {
+                translateX: "-200vw",
+                ease: "none",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: triggerRef.current,
+                    start: "top top",
+                    end: "2000 top",
+                    scrub: 0.6,
+                    pin: true,
+                    snap: 0.50,
+                }
+            });
+
+            return () => {
+                pin.kill();
             }
-        });
-
-        return () => {
-            pin.kill()
-        }
-
+        // }
     }, []);
 
     return (
