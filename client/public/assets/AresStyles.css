@@ -1269,13 +1269,117 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 /*==========Home -> Feed End==========*/
 
+/*==========About==========*/
 
+.about{
+    position: relative;
+}
 
+.about .about-container{
+    padding: 1rem;
+}
 
+.about .about-container .atp-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+}
 
+.about .about-container .atp-container > * {
+    flex: 1;
+}
 
+.about .about-container .atp-container .atp-left{
+    padding-left: 3rem;
+}
 
+.about .about-container .atp-container .atp-left .atp-left-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
+.about .about-container .atp-container .atp-left .atp-left-header span{
+    font-size: 76px;
+}
 
+.about .about-container .atp-container .atp-left .atp-left-header span.black{
+    color: black;
+}
+.about .about-container .atp-container .atp-left .atp-left-header span.gray{
+    color: #9f9f9f;
+}
 
+.about .about-container .atp-container .atp-left .atp-left-des span{
+    font-size: 20px;
+}
 
+.about .about-container .atp-container .atp-right{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.about .about-container .atp-container .atp-right img{
+    height: 450px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.about .about-container .atd-container{
+    height: 100vh;
+    background: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about .about-container .atd-container > * {
+    flex: 1;
+}
+
+.about .about-container .atd-container .atd-left{
+    display: grid;
+    place-items: center;
+}
+
+.about .about-container .atd-container .atd-left span{
+    font-size: 156px;
+    color: white;
+    display: inline-block;
+}
+
+.about .about-container .atd-container .atd-left span.accent-color{
+    color: var(--accent-color);
+}
+
+.about .about-container .atd-container .atd-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 100%;
+    padding-right: 1rem;
+}
+
+.about .about-container .atd-container .atd-right .atd-right-item{
+    color: white;
+}
+
+.about .about-container .atd-container .atd-right .atd-right-item .atd-item-header{
+    font-size: 56px;
+    color: var(--accent-color);
+}
+
+.about .about-container .atd-container .atd-right .atd-right-item .atd-item-content{
+    font-size: 26px;
+}
+
+.about .about-container .atd-container .atd-right .atd-right-item .atd-item-content span{
+    text-align: justify;
+}
+/*==========About End==========*/

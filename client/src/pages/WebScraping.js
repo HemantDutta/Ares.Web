@@ -44,7 +44,6 @@ export const WebScraping = () => {
 
     //Horizontal Scroll Animation
     useEffect(() => {
-        // if (window.innerWidth > 991) {
             const pin = gsap.fromTo(sectionRef.current, {
                 translateX: 0
             }, {
@@ -64,7 +63,6 @@ export const WebScraping = () => {
             return () => {
                 pin.kill();
             }
-        // }
     }, []);
 
     return (
