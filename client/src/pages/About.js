@@ -75,7 +75,7 @@ export const About = () => {
                                     <span>Motivation</span>
                                 </div>
                                 <div className="atd-item-content">
-                                    <span>Fascinated by a project one of my friends was working on for a client that included scraping user's carts on an e-commerce website, I found myself curious about how web scraping works. After watching a few YouTube tutorials, I got the gist of it. I have always struggled with staying up-to-date with all the latest tech updates, and this idea came to my mind.</span>
+                                    <span>Fascinated by a project one of my friends was working on for a client that included scraping user's carts on an e-commerce website, I found myself curious about how web scraping works. After watching a few YouTube tutorials, I got the gist of it. I have always struggled with staying up-to-date with all the latest tech updates, and that is how this idea came to my mind.</span>
                                 </div>
                             </div>
                             <div className="atd-right-item" ref={learn}>
