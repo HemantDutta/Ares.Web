@@ -888,11 +888,18 @@ nav .navbar-container .navbar-about-option span, .navbar-menu-option span {
 
 .web-scraping-container .web-scraping-content {
     background-color: rgba(0, 0, 0, 1);
-    height: 100vh;
+    min-height: 100vh;
     width: 300vw;
     display: flex;
     flex-direction: row;
     position: relative;
+}
+
+@media screen and (max-width: 600px){
+    .web-scraping-container .web-scraping-content{
+        flex-direction: column;
+        width: 100vw;
+    }
 }
 
 .web-scraping-container .web-scraping-content .web-scraping-item .item-content .item-text-content {

@@ -25,7 +25,7 @@ app.get("/verge-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://www.theverge.com/search?q=${userSearch}`;
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto(url, {timeout: 0});
     await autoScroll(page, 50);
@@ -55,7 +55,7 @@ app.get("/vb-scraping", async (req, res) => {
         userSearch += temp_words[i];
     }
     const url = `https://venturebeat.com/?s=${userSearch}`;
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto(url);
     await autoScroll(page, 50);
@@ -78,7 +78,7 @@ app.get("/vb-scraping", async (req, res) => {
 //Feed Headline techNewsWorld
 app.get("/feed-headline", async (req,res)=>{
     const url = "https://techcrunch.com/";
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto(url, {timeout: 0});
     const news = await page.evaluate(()=> {
@@ -99,7 +99,7 @@ app.get("/feed-headline", async (req,res)=>{
 //Feed Content techNewsWorld
 app.get("/feed-content", async (req,res)=>{
     const url = "https://techcrunch.com/";
-    const browser = await puppeteer.launch({headless: false, defaultViewport: {
+    const browser = await puppeteer.launch({headless: true, defaultViewport: {
             width:1920,
             height:1080
         }});
