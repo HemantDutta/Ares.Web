@@ -21,6 +21,8 @@ Ares.Web utilizes a powerful combination of technologies to deliver a modern and
 - **CSS**: Enhances the visual presentation of the website, ensuring an aesthetically pleasing and engaging user interface.
 - **JavaScript**: The programming language that brings interactivity and dynamic functionality to the website.
 - **React**: A popular JavaScript library for building user interfaces, enabling smooth and efficient rendering of content.
+- **Node JS**: A cross-platform, open-source server environment that can run on Windows, Linux, Unix, macOS, and more.
+- **Express JS**: A back end web application framework for building RESTful APIs with Node.js
 
 ## Key Features
 
