@@ -34,9 +34,7 @@ Ares.Web utilizes a powerful combination of technologies to deliver a modern and
 
 4. **Real-Time Updates**: Stay up-to-date with the rapidly evolving tech landscape. Ares.Web constantly updates its news feed, ensuring that users receive the most recent and relevant information in real-time.
 
-5. **Customization Options**: Ares.Web enables users to personalize their reading experience. Users can create profiles, save favorite articles, and customize their news feed based on their specific interests and preferences.
-
-6. **Responsive Design**: Ares.Web is designed to be fully responsive, adapting seamlessly to various devices and screen sizes. Whether accessed from a desktop computer, tablet, or mobile phone, users can enjoy a consistent and optimized experience.
+5. **Responsive Design**: Ares.Web is designed to be fully responsive, adapting seamlessly to various devices and screen sizes. Whether accessed from a desktop computer, tablet, or mobile phone, users can enjoy a consistent and optimized experience.
 
 Visit Ares.Web today and discover a hassle-free way to explore and stay informed about the latest advancements in technology.
 
