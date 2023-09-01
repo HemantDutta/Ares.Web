@@ -21,6 +21,7 @@ export const Search = () => {
     const [sDone, setSDone] = useState(false);
     const [resultsCount, setResultsCount] = useState(0);
     const [currTerm, setCurrTerm] = useState('');
+    const [error, setError] = useState('');
 
     //Search Term from Home
     useEffect(() => {
@@ -72,17 +73,27 @@ export const Search = () => {
         setNews2([]);
         setLoader(true);
         axios.get(`http://localhost:5000/verge-scraping?search=${search}`).then((res) => {
-            setNews(res.data);
-            fetchNews2()
+            if (typeof res.data === "string") {
+                setError(res.data);
+                setLoader(false);
+            } else {
+                setNews(res.data);
+                fetchNews2()
+            }
         });
     }
 
     //Fetching News From Venture Beat
     function fetchNews2() {
         axios.get(`http://localhost:5000/vb-scraping?search=${search}`).then((res) => {
-            setNews2(res.data);
-            setLoader(false)
-            setNewsAnim(true);
+            if (typeof res.data === "string") {
+                setError(res.data);
+                setLoader(false);
+            } else {
+                setNews2(res.data);
+                setLoader(false);
+                setNewsAnim(true);
+            }
         })
     }
 
@@ -95,12 +106,12 @@ export const Search = () => {
                 text.innerText = "Sharpening our digital knife...";
                 setTimeout(() => {
                     text.innerText = "Scraping The Digital Surface..."
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         text.innerText = "Almost there..."
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             text.innerText = "Thank you for your patience...";
-                        },3000)
-                    },3000)
+                        }, 3000)
+                    }, 3000)
                 }, 3000)
             }, 3000)
         }
@@ -145,8 +156,8 @@ export const Search = () => {
     })
 
     //Handle Key Down For Search Bar
-    function handleKeyDown(e){
-        if(e.key === "Enter"){
+    function handleKeyDown(e) {
+        if (e.key === "Enter") {
             fetchNews();
         }
     }
@@ -165,7 +176,11 @@ export const Search = () => {
                 </div>
                 <div className="search-results-container">
                     {
-                        resultsCount !==0 &&
+                        error &&
+                        <div className="error">{error}</div>
+                    }
+                    {
+                        resultsCount !== 0 && !error &&
                         <>
                             <div className="search-result-count">
                                 <span>{resultsCount} results found for <span className="accent-color">{currTerm}</span></span>
@@ -197,6 +212,7 @@ export const Search = () => {
                                     })
                                 }
                                 {
+                                    !error &&
                                     news2.map((value, index) => {
                                         return (
                                             <div className="result-container" key={index}>

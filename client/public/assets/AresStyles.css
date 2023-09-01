@@ -41,6 +41,10 @@ body {
     display: inline-block;
 }
 
+.error{
+    text-align: center;
+    width: 100%;
+}
 /*Common CSS End*/
 
 /*Scrollbar*/

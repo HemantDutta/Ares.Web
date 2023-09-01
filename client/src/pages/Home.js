@@ -19,6 +19,7 @@ export const Home = () => {
     const [loader, setLoader] = useState(true);
     const [headline, setHeadline] = useState([]);
     const [news, setNews] = useState([]);
+    const [error, setError] = useState('');
 
     //GSAP
     useLayoutEffect(() => {
@@ -41,7 +42,13 @@ export const Home = () => {
     function fetchHeadline() {
         axios.get("http://localhost:5000/feed-headline")
             .then((res) => {
-                setHeadline(res.data);
+                if(typeof res.data === "string"){
+                    setError(res.data);
+                    setLoader(false);
+                }
+                else{
+                    setHeadline(res.data);
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -52,7 +59,12 @@ export const Home = () => {
     function fetchFeed() {
         axios.get("http://localhost:5000/feed-content")
             .then((res) => {
-                setNews(res.data);
+                if(typeof res.data === "string"){
+                    setError(res.data);
+                }
+                else {
+                    setNews(res.data);
+                }
                 setLoader(false);
             })
             .catch((err) => {
@@ -125,6 +137,11 @@ export const Home = () => {
                     <div className="feed-content">
                         <div className="feed-headline">
                             {
+                                error &&
+                                <span className="error">{error}</span>
+                            }
+                            {
+                                !error &&
                                 headline.map(((value, index) => {
                                     return (
                                         <div className="headline-item" key={index}>
@@ -164,6 +181,7 @@ export const Home = () => {
                         }
                         <div className="feed-flex">
                             {
+                                !error &&
                                 news.map((value, index) => {
                                     return (
                                         <div className="result-container" key={index}>
