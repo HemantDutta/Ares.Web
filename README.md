@@ -1,5 +1,7 @@
 # Ares.Web
 
+Server Repo 🔗: https://github.com/HemantDutta/Ares.Web-Server
+
 ## Description
 
 Ares.Web is a cutting-edge tech news website that aggregates news articles from various sources using web scraping technology. With a focus on providing a seamless user experience, Ares.Web aims to make it easy for tech enthusiasts to stay updated on their favorite technologies, all in one place.
